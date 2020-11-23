@@ -331,6 +331,6 @@ while($result3=mysqli_fetch_array($query3_run)){
 
 echo $hd_time_in_seconds.'<br>';
 echo 'tech '.$tech_time_in_seconds.'<br>';
-echo 'cx '.$cx_time_in_seconds.'<br>';
+//echo 'cx '.$cx_time_in_seconds.'<br>';
 
 ?>
