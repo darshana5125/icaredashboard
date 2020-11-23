@@ -1,0 +1,6 @@
+<?php
+$cx_list="'BGD-DHB','BGD-ELD','BGD-IBB','BGD-UCB','CCC-UNC','IND-01-IS_Yeldi','Interblocks','KHM-MBC','LKA-CF','LKA-DMS','MEGALINK','PHL-MGL ','PHL-PLN','PHL-WLB','QAT-BBL','support','UCPB','UCPB_IBANK','PHL-SBK',''";
+ 
+$q_list="23,7,37,33,36,22,21,20,34,39,15,14,11,32,31,41,27,94,102,40,30,13,16,98,106,97,99,100,101,91,108,92";
+
+?>

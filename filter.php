@@ -1,0 +1,267 @@
+<?php session_start();?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/icaredashboard/ums/inc/connection.php'); ?>
+
+<?php
+
+// checking if a user is logged in
+	if (!isset($_SESSION['user_id'])) {
+		header('Location: index.php');
+	}
+	$mid=$_GET['mid'];
+	$uid = $_SESSION['user_id'];
+	$access="";
+
+	$sql="select access from module_access_view where user_id=$uid and module_id=$mid";
+	$sql_run=mysqli_query($connection,$sql);
+
+		while($result_sql=mysqli_fetch_assoc($sql_run)){
+		$access=$result_sql['access'];
+	}
+	
+if($access==1){
+
+echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600" integrity="sha384-SwJ8IKu+475JgxrHPUzIvbbV+++NEwuWjwVfKbFJd5Eeh4xURT0ipMWmJtTzKUZ+" crossorigin="anonymous">
+ <link href="css/main2.css" rel="stylesheet">
+<link rel="stylesheet" href="ums/css/main.css">';
+?>
+<header>
+		<div class="appname">iCare Dashboard</div>
+		<div class="loggedin">Welcome <?php echo ucfirst($_SESSION['first_name']); ?>! <a href="ums/logout.php">Log Out</a></div>
+</header>
+<div class="testbox">
+  <h1>iCare Reports</h1>
+  
+
+  <form method="POST" action="result3_new.php" name="form1"  target="_blank"  rel ="noopener noreferrer">
+
+<?php
+
+$query="select distinct(cx_id) from view_temp2 order by cx_id asc";
+$query_queue="select distinct(q_name) from view_temp2 order by q_name asc";
+$query_service="select distinct(s_name) from view_temp2 order by s_name asc";
+$query_state="select distinct(ts_name) from view_temp2 order by ts_name asc";
+$query_owner="select distinct(first_name) from view_temp2 order by first_name asc";
+$query_priority="select distinct(tp_name) from view_temp2 order by tp_name asc";
+$query_responsible="select distinct intuser_view.first_name,intuser_view.id  from intuser_view join issue_view on intuser_view.id=issue_view.responsible_user_id order by intuser_view.first_name asc";
+
+
+
+
+// if(isset($_POST['customer'])|| isset($_POST['queue']))
+	
+
+// {
+		// $cx_id=$_POST['customer'];
+		// $q_name=$_POST['queue'];
+// $query_run=mysqli_query($query);
+// echo '<label id="icon" for="name">Select Customer</label>  <select name="queue" onchange=this.form.submit()><option value="All">All</option>';
+// while($result=mysqli_fetch_assoc($query_run))
+// {	
+
+	// $cxid=$result['cx_id'];
+	// echo '<option value="'.$cxid.'">'.$cxid.'</option>';
+	// if($cxid==$cx_id)
+	// {
+		// echo '<option value='.$cx_id.' selected>'.$cx_id.'</option>';
+	// }
+	
+		
+// }
+// echo '</select>';
+
+
+// $query2="select * from view_temp2 where cx_id='$cx_id' and q_name='$q_name'";
+
+// $query2_run=mysqli_query($query2);
+// echo '<link rel="stylesheet" type="text/css" href="table_style.css"> <table id="tablestyle"><th>Number</th><th>Customer ID</th><th>CSR #</th><th>Subject</th><th>Created Time</th><th>Changed Time</th><th>Closed Time</th>
+// <th>Queue</th><th>State</th><th>Priority</th><th>Service</th><th>Owner</th>';
+
+// $count=1;
+// while($result2=mysqli_fetch_assoc($query2_run)) 
+// {
+	// echo '<tr bgcolor="585C53"><td>'.$count.'</td>
+	// <td>'.$result2['cx_id'].'</td>'	;
+	// echo'<td>'.$result2['tn'].'</td>
+	// <td>'.$result2['title'].'</td>
+	// <td>'.$result2['create_time'].'</td>
+	// <td> '.$result2['ct'].'</font></td>
+	// <td> '.$result2['close_time'].'</td>
+	// <td> '.$result2['q_name'].'</td>
+	// <td> '.$result2['ts_name'].'</td>
+	// <td> '.$result2['tp_name'].'</td>
+	// <td> '.$result2['s_name'].'</td> 
+	// <td> '.$result2['first_name'].'</td></tr>'; 
+	
+// $count++;
+	
+// }
+ // echo '</table></div>';
+	//}
+	
+
+ if(!isset($_POST['customer']) ||!isset($_POST['queue']) ||!isset($_POST['service']) ||!isset($_POST['state']) ||!isset($_POST['owner']) ||!isset($_POST['priority']))
+ {
+	 
+	 echo '<label id="icon" for="name">Select Queue <font color="red" size="2px">*</font></label>  <select name="queue[]" multiple="multiple" size="4" id="que" >';
+	$query_run=mysqli_query($connection,$query_queue);
+	echo '<option value="All">All</option>';
+while($result=mysqli_fetch_assoc($query_run))
+{	
+	$qname=$result['q_name'];
+	echo '<option value="'.$qname.'">'.$qname.'</option>';
+		
+			
+}
+echo '</select><br/>';
+
+		 
+	echo '<label id="icon" for="name">Select Customer <font color="red" size="2px">*</font></label> <select name="customer[]" multiple="multiple" size="4" id="cus">';
+	$query_run=mysqli_query($connection,$query);
+	echo '<option value="All">All</option>';
+while($result=mysqli_fetch_assoc($query_run))
+{	
+	$cxid=$result['cx_id'];
+	echo '<option value="'.$cxid.'">'.$cxid.'</option>';
+		
+			
+}
+echo '</select><br/>';
+
+
+
+
+echo '<label id="icon" for="name">Select Service<font color="red" size="2px">*</font></label>   <select name="service[]" multiple="multiple" size="4" id="ser">';
+	$query_run=mysqli_query($connection,$query_service);
+	echo '<option value="All">All</option>';
+while($result=mysqli_fetch_assoc($query_run))
+{	
+if($result['s_name']!=""){
+	$tsname=$result['s_name'];
+	
+	echo '<option value="'.$tsname.'">'.$tsname.'</option>';
+}
+		
+			
+}
+echo '</select><br/>';
+
+echo '<label id="icon" for="name">Select State <font color="red" size="2px">*</font></label>  <select name="state[]" multiple="multiple" size="4" id="sta" >';
+	$query_run=mysqli_query($connection,$query_state);
+	echo '<option value="All">All</option>';
+while($result=mysqli_fetch_assoc($query_run))
+{	
+	$stname=$result['ts_name'];
+	echo '<option value="'.$stname.'">'.$stname.'</option>';
+		
+			
+}
+echo '</select><br/>';
+
+echo '<label id="icon" for="name">Select Owner<font color="red" size="2px">*</font></label>  <select name="owner[]" multiple="multiple" size="4" id="own" >';
+	$query_run=mysqli_query($connection,$query_owner);
+	echo '<option value="All">All</option>';
+while($result=mysqli_fetch_assoc($query_run))
+{	
+	$fname=$result['first_name'];
+	echo '<option value="'.$fname.'">'.$fname.'</option>';
+		
+			
+}
+echo '</select><br/>';
+
+echo '<label id="icon" for="name">Select Responsible<font color="red" size="2px">*</font></label>  <select name="responsible[]" multiple="multiple" size="4" id="res" >';
+	$query_run=mysqli_query($connection,$query_responsible);
+	echo '<option value="All">All</option>';
+while($result=mysqli_fetch_assoc($query_run))
+{	
+	$rid=$result['id'];
+	$rname=$result['first_name'];
+	echo '<option value="'.$rid.'">'.$rname.'</option>';
+		
+			
+}
+
+echo '</select><br/>';
+
+echo '<label id="icon" for="name">Select Priority <font color="red" size="2px">*</font></label>   <select name="priority[]" multiple="multiple" size="4" id="pri">';
+	$query_run=mysqli_query($connection,$query_priority);
+	echo '<option value="All">All</option>';
+while($result=mysqli_fetch_assoc($query_run))
+{	
+	$tpname=$result['tp_name'];
+	echo '<option value="'.$tpname.'">'.$tpname.'</option>';
+		
+			
+}
+echo '</select><br/>
+<input type="checkbox" name="exception" value="true" class="check"> <label id="icon" for="name">Exceptions</label></br>';
+
+
+// echo'<select name="range" class="range" height="15px">
+// <option value="before">Before</option> 
+// <option value="before">After</option> 
+// <option value="before">Between</option> 
+// </select><br>';
+ }
+ 	 
+ echo '<input type="submit" value="Done" class="button">
+ <script type="text/javascript">
+
+function resetSelect(){
+
+	selObject=document.getElementById("cus")
+
+for (i=0;i<selObject.options.length;i++){
+selObject.options[i].selected=false;
+}
+
+selObject1=document.getElementById("que")
+
+for (i=0;i<selObject1.options.length;i++){
+selObject1.options[i].selected=false;
+}
+
+selObject2=document.getElementById("ser")
+
+for (i=0;i<selObject2.options.length;i++){
+selObject2.options[i].selected=false;
+}
+selObject3=document.getElementById("sta")
+
+for (i=0;i<selObject3.options.length;i++){
+selObject3.options[i].selected=false;
+}
+selObject4=document.getElementById("own")
+
+for (i=0;i<selObject4.options.length;i++){
+selObject4.options[i].selected=false;
+}
+selObject5=document.getElementById("pri")
+
+for (i=0;i<selObject5.options.length;i++){
+selObject5.options[i].selected=false;
+}
+
+selObject6=document.getElementById("res")
+for (i=0;i<selObject6.options.length;i++){
+selObject6.options[i].selected=false;
+}
+
+
+
+
+}';
+echo '</script>';
+
+
+ 
+ 
+ 
+ echo'<input type="button" value="Reset" onclick="resetSelect()" class="button" >';
+  echo'</form>
+  </div>';
+ }else{
+	header('Location: index.php');
+}	
+
+?>

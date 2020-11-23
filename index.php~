@@ -1,0 +1,185 @@
+<?php session_start(); ?>
+
+<?php include($_SERVER['DOCUMENT_ROOT'].'/icaredashboard/ums/inc/connection.php'); ?>
+<?php
+if(!isset($_SESSION['user_id'])){
+header('Location:ums/index2.php');
+}
+?>
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js" integrity="sha384-o9KO9jVK1Q4ybtHgJCCHfgQrTRNlkT6SL3j/qMuBMlDw3MmFrgrOHCOaIMJWGgK5" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type='text/javascript'>
+function hod()
+{
+	window.open("http://192.168.47.25/icaredashboard/hod6.php","_blank");
+}
+function brk_up()
+{
+	window.open("http://192.168.47.25/icaredashboard/hod_break_up2.php","_blank");
+}
+function daily()
+{
+	window.open("http://192.168.47.25/icaredashboard/daily_report_live_2015_2.php","_blank");
+}
+
+function exceptions()
+{
+	window.open("http://192.168.47.25/icaredashboard/exceptions.php","_blank");
+}
+
+function sla()
+{
+	window.open("http://192.168.47.25/icaredashboard/sla_update.php","_blank");
+}
+
+function filter()
+{
+	window.open("http://192.168.47.25/icaredashboard/filter.php","_blank");
+}
+
+function summary()
+{
+	window.open("http://192.168.47.25/icaredashboard/daily_summary_2015_backlog2.php","_blank");
+}
+
+function cr()
+{
+	window.open("http://192.168.47.25/icaredashboard/cr_report.php","_blank");
+}
+
+function escalation()
+{
+	window.open("http://192.168.47.25/icaredashboard/first_escalation_pending.php","_blank");
+}
+function month()
+{
+window.open("http://192.168.47.25/icaredashboard/daily_report_live_2015_monthly.php","_blank");
+}
+function old_daily()
+{
+window.open("http://192.168.47.25/icaredashboard/daily_report_live_2015.php","_blank");
+}
+function breached_items()
+{
+window.open("http://192.168.47.25/icaredashboard/breached_list.php","_blank");
+}
+
+function ucpb_issues()
+{
+window.open("http://192.168.47.25/icaredashboard/ticket_escalation_lastest_with_UCPB.php","_blank");
+}
+
+function state_count()
+{
+window.open("http://192.168.47.25/icaredashboard/state_wise_count_r9a.php","_blank");
+}
+
+function pending_open()
+{
+window.open("http://192.168.47.25/icaredashboard/pending_follow_ups.php","_blank");
+}
+
+function pending_fix()
+{
+window.open("http://192.168.47.25/icaredashboard/pending_follow_ups_fix.php","_blank");
+}
+function sms_navigate()
+{
+window.open("http://192.168.47.25/icaredashboard:8084/Send_Message_Web/","_blank");
+}
+</script>
+
+<link href="css/home.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="ums/css/main.css">
+
+</head>
+<header>
+		<div class="appname">iCare Dashboard</div>
+		<div class="loggedin">Welcome <?php echo ucfirst($_SESSION['first_name']); ?>! <a href="ums/logout.php">Log Out</a></div>
+</header>
+
+<body id="background" class="home">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" integrity="sha384-aBL3Lzi6c9LNDGvpHkZrrm3ZVsIwohDD7CDozL0pk8FwCrfmV7H9w8j3L7ikEv6h" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+ var images = ['ibbl.jpg','wp_02.jpg','wp_03.jpg','wp_04.jpg','wp_05.jpg','wp_06.jpg','wp_07.jpg','wp_08.jpg','wp_10.jpg','wp_11.jpg',
+ 'wp_13.jpg','wp_14.jpg','wp_15.jpg','wp_16.jpg','wp_18.jpg','wp_19.jpg','wp_20.jpg','wp_21.jpg','wp_22_1.jpg','wp_23.jpg',
+ 'wp_25.jpg','wp_26.jpg','wp_27.jpg','wp_28.jpg','wp_29.jpg','wp_31.jpg','wp_33.jpg','wp_35.jpg'];
+ $('#background').css({'background-image': 'url(wallpapers/' + images[Math.floor(Math.random() * images.length)] + ')' }) ;
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" integrity="sha384-UM1JrZIpBwVf5jj9dTKVvGiiZPZTLVoq4sfdvIe9SBumsvCuv6AHDNtEiIb5h1kU" crossorigin="anonymous"></script>
+	<script src="jquery.background-fit.min.js"></script>
+	
+	
+
+<p class="texto">Dashboard</p>
+<div class="Registro">
+<table  >
+<tr>
+<td>
+<input type="button" value="Ticket Escalation" onclick="escalation();">
+</td>
+
+
+<td>
+<input type="button" value="Add/ Delete Exceptions" onclick="exceptions();" >
+</td>
+<td>
+<input type="button" value="Daily Report" onclick="daily();" >
+</td>
+</tr>
+<tr>
+<td>
+<input type="button" value="HOD Summary" onclick="hod();">
+</td>
+
+<td>
+<input type="button" value="SLA Update" onclick="sla();">
+</td>
+<td>
+<input type="button" value="Daily Summary" onclick="summary();">
+</td>
+</tr>
+<tr>
+<td><input class="btn btn-success" type="button" value="Fix Stat Report" onclick="state_count();">
+</td>
+<td>
+<input type="button" value="Report Filter" onclick="filter();">
+</td>
+<td>
+<input type="button" value="CR Report" onclick="cr();">
+</td>
+</tr>
+<tr>
+<td><input class="btn btn-success" type="button" value="Pending Follow Up Open" onclick="pending_open();"></td>
+<td><input type="button" value="Breached Items" onclick="breached_items();"></td>
+<td><input type="button" value="Month End Report" onclick="month();"></td>
+</tr>
+
+<tr>
+<td><input class="btn btn-success" type="button" value="Pending Follow Up Fix" onclick="pending_fix();"></td>
+<td><input class="btn btn-success" type="button" value="HOD Break Up" onclick="brk_up();"></td>
+<td><input type="button" value="Old Daily Report" onclick="old_daily();"></td>
+
+
+</tr>
+			
+			
+			
+			</table>
+			</div>
+			
+			<script type='text/javascript'>
+			
+			$("#background").bg_fit();
+			
+			
+			</script>
+<body>			
+</html>

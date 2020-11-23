@@ -1,0 +1,42 @@
+#wrapper{
+	width:20%;
+	margin-left:50px;
+	margin-top: 20px;
+	font-family: 'Arial'
+}
+table{
+	border:1px solid #d3d3d3;
+	border-collapse: collapse;
+	border-top: none;
+	margin-bottom: 20px;	
+}
+.table td{
+	background-color: #e2e2e2;
+	text-transform: capitalize;
+	font-size: 12px;
+	padding: 5px 10px;	
+	border-bottom: 2px solid #d3d3d3;	
+}
+.table th{
+	background-color: #ff7012;
+	font-size: 14px;
+	padding: 10px 15px;
+}
+.table td a{
+	text-decoration: none;	
+	color: black;
+}
+input {
+	border-radius: 5px;
+	background-color: #ff7012;
+	color:black;
+	font-size: 14px;
+	border-color: #ff7012;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
+input:hover{
+	background-color:#f35c00;
+	color:white;
+}

@@ -1,0 +1,102 @@
+#tablestyle{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 80%;
+    border-collapse:collapse;
+	border: 1px solid black;
+	}
+	
+#tablestyle2{
+
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 40%;
+    border-collapse:collapse;
+	border: 1px solid black;
+	}
+
+td.top{
+background-color:black;
+height:20px;
+width: 80%;
+}
+	
+td.second{
+background-color:#FACC2E;
+height:20px;
+width: 70%;
+}
+
+td.third{
+background-color:2C4DA1;
+height:20px;
+color:white;
+padding-left:5px;
+font-weight: bold;
+font-family:Calibri;
+font-size:15px;
+width: 20%;
+}
+
+td.third2{
+background-color:8fb283;
+height:20px;
+color:white;
+padding-left:5px;
+font-weight: bold;
+font-family:Calibri;
+font-size:15px;
+width: 20%;
+}
+
+td.forth{
+background-color:white;
+text-align:center;
+color:black;
+padding-left:5px;
+font-weight: bold;
+font-family:Calibri;
+width:15%;
+
+border: 1px solid black;
+}
+
+p
+{
+font-family:Calibri;
+font-size:15px;
+}
+
+td.fifth{
+background-color:white;
+text-align:left;
+color:black;
+padding-left:5px;
+font-family:Calibri;
+width:15%;
+
+border: 1px solid black;
+}
+
+td.sixth{
+background-color:white;
+text-align:right;
+color:black;
+padding-left:5px;
+font-family:Calibri;
+width:5%;
+
+border: 1px solid black;
+}
+
+
+.inside{
+background-color:white;
+height:20px;
+color:black;
+padding-left:5px;
+font-weight: bold;
+font-family:Calibri;
+width:200px;
+text-align: center;
+}
+
+

@@ -1,0 +1,98 @@
+<?php session_start();?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/icaredashboard/ums/inc/connection.php'); ?>
+<?php
+
+// checking if a user is logged in
+	if (!isset($_SESSION['user_id'])) {
+		header('Location: index.php');
+	}
+echo'<html><head>
+<link rel="stylesheet" type="text/css" href="table_style.css"/> 
+ <script src="https://code.jquery.com/jquery-1.9.1.js" integrity="sha384-+GtXzQ3eTCAK6MNrGmy3TcOujpxp7MnMAi6nvlvbZlETUcZeCk7TDwvlCw9RiV6R" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" integrity="sha384-Kv4u0J/5Vhwb62xGQP6LXO686+cmeHY3DPXG9uf265EghKCn2SRAKu9hcHb2FS+L" crossorigin="anonymous"></script>';
+ 
+
+
+
+echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600" integrity="sha384-SwJ8IKu+475JgxrHPUzIvbbV+++NEwuWjwVfKbFJd5Eeh4xURT0ipMWmJtTzKUZ+" crossorigin="anonymous">
+ <link href="css/main3.css" rel="stylesheet">
+<link rel="stylesheet" href="ums/css/main.css">';
+
+ 
+
+ echo '<head></head>';
+?>
+
+<header>
+		<div class="appname">iCare Dashboard</div>
+		<div class="loggedin">Welcome <?php echo ucfirst($_SESSION['first_name']); ?>! <a href="ums/logout.php">Log Out</a></div>
+</header>
+
+<?php 
+ echo'<body>';
+ 
+ function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+	}
+ 
+		 if(isset($_POST['ok']) ){
+			 $date1=test_input($_POST['datepicker1']);
+			 $date2=test_input($_POST['datepicker2']);
+	
+	 echo'<a href="http://192.168.1.164/icaredashboard/breached_list.php">Back</a>';	echo'<br><br>';	 
+	 
+		 
+			 
+	print "Breached issue list from " ; print $date1; print '  to  '; print $date2; echo'<br><br>';
+			 
+			 
+			
+			echo '<link rel="stylesheet" type="text/css" href="table_style.css"/> 
+<div id="box"><table id="tablestyle"><th>Number</th><th>CustomerID</th><th>CSR#</th><th>Title</th><th>Created</th><th>Changed</th><th>Close Time</th>
+<th>Status</th><th>Priority</th><th class="pri">Service</th><th>Breached time</th><th>Agent/Owner</th>';
+
+
+$query="select distinct cx_id,tn,title,create_time ,ct ,close_time ,ts_name ,tp_name ,s_name ,breached_time,first_name  from temp2_view where sla_state='3' and breached_time between '$date1' and '$date2'
+order by breached_time desc";
+
+
+$query_run=mysqli_query($connection,$query);
+$count=1;
+
+while($result2=mysqli_fetch_assoc($query_run)) 
+{
+	
+	echo '<tr><td class="no">'.$count.'</td>
+	<td class="cx">'.$result2['cx_id'].'</td>'	;
+	echo'<td class="csr">'.$result2['tn'].'</td>
+	<td class="subject">'.$result2['title'].'</td>
+	<td class="time">'.$result2['create_time'].'</td>
+	<td class="time"> '.$result2['ct'].'</font></td>
+	<td class="time"> '.$result2['close_time'].'</td>
+	<td class="state"><font color="#FF0000"> '.$result2['ts_name'].'</font></td>
+	<td> '.$result2['tp_name'].'</td>
+	<td class="service"> '.$result2['s_name'].'</td> 
+	<td class="owner"> '.$result2['breached_time'].'</td>
+	<td class="owner"> '.$result2['first_name'].'</td>
+	
+	</tr>';  
+			 
+			 
+		$count++;
+		 
+		
+			 
+			 
+		 }
+	
+}
+	
+	
+echo' </html>';
+ 
+ //mysqli_close($link);
+ 
+ ?>

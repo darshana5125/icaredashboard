@@ -1,0 +1,97 @@
+body{font-size:.8em;}
+
+
+.table{
+	margin-top: 10px;
+    border-radius: 5px;
+    border-spacing: 0px;
+    border-collapse: separate;
+    font-size:.9em;
+}
+#rdate{
+	padding-left: 25px;
+}
+
+.card{
+	margin-top:25px;
+	margin-bottom: 25px;
+}
+.card-header{
+	background-color: #DC3545;
+	color: white;
+	text-align: center
+}
+.card-header span{
+	font-size: 1.1em;
+	padding-left: 25px;
+}
+.card-body{
+	background-color: #F5F5F5;
+}
+.table td{
+	padding: 5px;
+}
+
+#myButton{
+	font-size:.8em;
+	margin-top: 10px;
+}
+
+.dropdown-item{
+	font-size: .7em;	
+}
+
+#submit{
+	font-size: .8em;
+	margin-top: 10px;
+}
+#project{
+	font-size: .9em;
+	margin-top: 5px;
+}
+#support{
+	font-size: .9em;
+	margin-top: 5px;
+}
+#btn-pro{
+	font-size: .9em;
+	margin-top: 5px;
+}
+#btn-sup{
+	font-size: .9em;
+	margin-top: 5px;
+}
+
+.table-info{
+	border: 2px solid #86CFDA;
+}
+
+.table-danger{
+	border: 2px solid #ED969E;
+}
+
+.table-success{
+	border: 2px solid #8FD19E;
+}
+
+.table-warning{
+	border: 2px solid #FFDF7E;
+}
+#table2 tr .tb2-assign{
+	background-color: #F5C6CB;
+}
+#table2 tr .tb2-info{
+	background-color: #BEE5EB;
+}
+
+
+a{	
+	color: black;
+}
+a:link{
+	text-decoration: none;
+}
+
+
+
+

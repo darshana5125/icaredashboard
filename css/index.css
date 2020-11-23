@@ -1,0 +1,11 @@
+.item{
+	font-size: .8em;
+	padding:4px !important;
+}
+
+.module{
+	padding-top: 10px;
+}
+a:link {
+  text-decoration: none !important;
+}

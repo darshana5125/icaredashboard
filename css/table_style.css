@@ -1,0 +1,57 @@
+table{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#sla{
+float:right;
+margin-top:-25%;
+}
+
+P{
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-weight:bold;
+margin-bottom:0px;
+
+}
+
+td.csr{
+color:white;
+width:10%
+}
+
+#status{
+margin-top:0px;
+}
+
+div{
+margin-top:0px;
+margin-b:0px;
+}
+
+td.status{
+font-weight:bold;
+color:white;
+}
+
+td.csrdetails{
+font-weight:bold;
+color:white;
+background-color:211CA1;
+width:10%
+}
+
+td.product{
+font-weight:bold;
+color:white;
+background-color:211CA1;
+width:15%
+}
+
+
+
+
+
+
+
